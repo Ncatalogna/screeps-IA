@@ -1,0 +1,7 @@
+external class Config {
+
+  constructor() {
+
+  }
+
+}
