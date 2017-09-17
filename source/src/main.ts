@@ -1,8 +1,15 @@
 import { Log } from "./herramientas/log";
-//import * as Profiler from "screeps-profiler";
+import { Fabrica } from "./fabrica"
+import * as Profiler from "screeps-profiler";
 
 export const loop = function() {
     Log.Notificar('Testeo');
 
-    console.log("running!!");
+    for(let nombre in Game.spawns){
+        debugger;
+        var zz = new Fabrica(Game.spawns[nombre].id);
+
+        zz.Estado();
+    }
+
 };

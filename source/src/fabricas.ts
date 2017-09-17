@@ -1,0 +1,5 @@
+class Fabricas {
+  constructor() {
+
+  }
+}
