@@ -9,6 +9,7 @@ namespace screepIA {
      */
     static Notificar(mensaje: string) {
         //Todo: Terminar si siempre loguea
+        debugger;
         if (true) {
           console.log('Notifica: ' + mensaje);
         }
