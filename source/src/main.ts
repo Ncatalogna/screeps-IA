@@ -1,15 +1,15 @@
-import { Log } from "./herramientas/log";
-import { Fabrica } from "./fabrica"
-import * as Profiler from "screeps-profiler";
+import * as screepIA from 'screepIA'
 
 export const loop = function() {
-    Log.Notificar('Testeo');
+        screepIA.Log.Notificar('Testeo');
 
-    for(let nombre in Game.spawns){
-        debugger;
-        var zz = new Fabrica(Game.spawns[nombre].id);
+        for(let nombre in Game.spawns){
+            debugger;
+            var zz = new screepIA.Fabrica(Game.spawns[nombre].id);
 
-        zz.Estado();
-    }
+            zz.Estado();
+        }
 
-};
+    };
+
+

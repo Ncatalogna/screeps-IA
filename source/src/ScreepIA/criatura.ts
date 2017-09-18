@@ -1,9 +1,9 @@
 //import * as Profiler from "screeps-profiler";
 
-export class Criatura {
+export class Criatura extends Creep {
   // tslint:disable-next-line:no-empty
-  constructor(creep: string) {
-
+  constructor(id: string) {
+    super(id);
   }
 
   Creacion(){
