@@ -1,14 +1,16 @@
-import { screepIA } from "./ScreepIA";
+import { Log } from './ScreepIA/herramientas/log';
+import { Fabrica } from './ScreepIA/fabrica';
+
 
 export const loop = function() {
     try {
 
         debugger;
-        screepIA.Log.Notificar('Testeo');
+        Log.Notificar('Testeo');
 
         for(let nombre in Game.spawns){
 
-            var zz = new screepIA.Fabrica(Game.spawns[nombre].id);
+            var zz = new Fabrica(Game.spawns[nombre].id);
 
             zz.Estado();
         }

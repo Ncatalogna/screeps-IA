@@ -1,5 +1,6 @@
-namespace screepIA {
-  export class Objetivo {
+import { Cordenada } from './cordenada';
+
+export class Objetivo {
     locaciones: Cordenada[];
     /**
      * Objetivos encontrados
@@ -17,13 +18,13 @@ namespace screepIA {
     }
 }
 
-  export enum TipoObjetivo{
-    minar,
-    construir,
-    transportar,
-    atacar,
-    defender
-  }
-
+export enum TipoObjetivo{
+  minar,
+  construir,
+  transportar,
+  atacar,
+  defender
 }
+
+
 

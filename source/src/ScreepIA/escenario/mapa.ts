@@ -1,46 +1,48 @@
-namespace screepIA {
-    class Mapa {
-        recursos: Objetivo[];
-        objetivos: Cordenada[];
-        constructor(nombre:string) {
-        }
+import { Cordenada } from './cordenada';
+import { Objetivo } from './objetivo';
 
-        /**
-         * Analiza Recurso del mapa
-         * @param xI posicion X Inicial
-         * @param yI posicion Y Inicial
-         * @param xF posicion X Final
-         * @param yF posicion Y Final
-         * @param room Objeto cuarto para trabajar
-         */
-        AnalizarRecurso(xI: number, yI: number, xF: number, yF: number, recurso: RoomPosition ){
+class Mapa {
+    recursos: Objetivo[];
+    objetivos: Cordenada[];
+    constructor(nombre:string) {
+    }
 
-            let cor: Cordenada = new Cordenada(recurso.x, recurso.y, TipoTerreno.mina, recurso.roomName);
-            let obj: Objetivo = new Objetivo(cor, TipoObjetivo.minar);
+    /**
+     * Analiza Recurso del mapa
+     * @param xI posicion X Inicial
+     * @param yI posicion Y Inicial
+     * @param xF posicion X Final
+     * @param yF posicion Y Final
+     * @param room Objeto cuarto para trabajar
+     */
+    AnalizarRecurso(xI: number, yI: number, xF: number, yF: number, recurso: RoomPosition ){
 
-            this.recursos.push(obj);
+        let cor: Cordenada = new Cordenada(recurso.x, recurso.y, TipoTerreno.mina, recurso.roomName);
+        let obj: Objetivo = new Objetivo(cor, TipoObjetivo.minar);
 
-            let mapResult: GameMap = Game.map[recurso.roomName];
+        this.recursos.push(obj);
 
-            const look = recurso.roomName.lookAtArea(xI, yI, xF, yF);
+        let mapResult: GameMap = Game.map[recurso.roomName];
 
-            for (var x= xI; x < xF; x++) {
+        const look = recurso.roomName.lookAtArea(xI, yI, xF, yF);
 
-                for (var y = yI; y < yF; y++) {
+        for (var x= xI; x < xF; x++) {
 
-                    for (var i = 0; i < look[x][y].length; i++) {
+            for (var y = yI; y < yF; y++) {
 
-                        if(look[x][y][i].type == LOOK_TERRAIN && look[x][y][i].terrain == 'plain') {
+                for (var i = 0; i < look[x][y].length; i++) {
 
-                        var cordenadas = new Cordenada(x, y, Terreno.vacio ,room.name);
-                        //this.recursos.push(cordenadas);
+                    if(look[x][y][i].type == LOOK_TERRAIN && look[x][y][i].terrain == 'plain') {
 
-                        }
+                    var cordenadas = new Cordenada(x, y, Terreno.vacio ,room.name);
+                    //this.recursos.push(cordenadas);
+
                     }
                 }
             }
         }
     }
-
 }
+
+
 
