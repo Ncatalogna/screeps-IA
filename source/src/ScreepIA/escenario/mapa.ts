@@ -1,10 +1,35 @@
-import { Cordenada } from './cordenada';
-import { Objetivo } from './objetivo';
+import { Cordenada, TipoTerreno } from './cordenada';
+import { Objetivo, TipoObjetivo } from './objetivo';
 
-class Mapa {
-    recursos: Objetivo[];
-    objetivos: Cordenada[];
-    constructor(nombre:string) {
+export class Zona extends Room {
+    //recursos: Objetivo[];
+    //objetivos: Cordenada[];
+
+    constructor(id: string) {
+        super(id);
+
+        //this.memory.recursos = this.recursos;
+        debugger;
+        if(this.memory.recursos == undefined){
+            this.memory.recursos = [];
+        }
+
+        //this.objetivos = this.memory.recursos || [];
+    }
+
+    AnalizarRecursos(){
+        debugger;
+        var target = this.find<Resource>(FIND_SOURCES);
+
+        var xStart = (target[0].pos.x - 1);
+        var yStart = (target[0].pos.y - 1);
+
+        var xFinish = (target[0].pos.x + 1);
+        var yFinish = (target[0].pos.y + 1);
+
+        var tt = new RoomPosition(target[0].pos.x, target[0].pos.y, target[0].room.name);
+
+        this.AnalizarRecurso(xStart, yStart, xFinish, yFinish,tt);
     }
 
     /**
@@ -20,11 +45,9 @@ class Mapa {
         let cor: Cordenada = new Cordenada(recurso.x, recurso.y, TipoTerreno.mina, recurso.roomName);
         let obj: Objetivo = new Objetivo(cor, TipoObjetivo.minar);
 
-        this.recursos.push(obj);
+        //let mapResult: GameMap = Game.map[recurso.roomName];
 
-        let mapResult: GameMap = Game.map[recurso.roomName];
-
-        const look = recurso.roomName.lookAtArea(xI, yI, xF, yF);
+        const look = this.lookAtArea(xI, yI, xF, yF);
 
         for (var x= xI; x < xF; x++) {
 
@@ -34,13 +57,16 @@ class Mapa {
 
                     if(look[x][y][i].type == LOOK_TERRAIN && look[x][y][i].terrain == 'plain') {
 
-                    var cordenadas = new Cordenada(x, y, Terreno.vacio ,room.name);
-                    //this.recursos.push(cordenadas);
+                    var cordenadas = new Cordenada(x, y, TipoTerreno.vacio , this.name);
+                    //Objetivo.
+                    obj.locaciones.push(cordenadas);
 
                     }
                 }
             }
         }
+        debugger;
+        this.memory.recursos.push(obj);
     }
 }
 

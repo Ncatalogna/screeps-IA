@@ -8,6 +8,7 @@ export class Objetivo {
      * @param tipo Tipo de objetivo
      */
     constructor(cordenada: Cordenada, tipo: TipoObjetivo) {
+      this.locaciones = [];
     }
     /**
      * Se agregaron locaciones
