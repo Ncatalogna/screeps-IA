@@ -2,34 +2,47 @@ import { Cordenada, TipoTerreno } from './cordenada';
 import { Objetivo, TipoObjetivo } from './objetivo';
 
 export class Zona extends Room {
-    //recursos: Objetivo[];
+    //recursos: Objetivo[] = this.memory.recursos || [];
     //objetivos: Cordenada[];
 
     constructor(id: string) {
         super(id);
 
         //this.memory.recursos = this.recursos;
-        debugger;
+        //debugger;
         if(this.memory.recursos == undefined){
             this.memory.recursos = [];
+        }
+
+        if (this.memory.recursosAnalizar == undefined) {
+            this.memory.recursosAnalizar = false;
         }
 
         //this.objetivos = this.memory.recursos || [];
     }
 
+    /**
+     *
+     */
     AnalizarRecursos(){
-        debugger;
-        var target = this.find<Resource>(FIND_SOURCES);
+        if (!this.memory.recursosAnalizar) {
+            var target = this.find<Resource>(FIND_SOURCES);
 
-        var xStart = (target[0].pos.x - 1);
-        var yStart = (target[0].pos.y - 1);
+                for (var index = 0; index < target.length; index++) {
 
-        var xFinish = (target[0].pos.x + 1);
-        var yFinish = (target[0].pos.y + 1);
+                    var xStart = (target[index].pos.x - 1);
+                    var yStart = (target[index].pos.y - 1);
 
-        var tt = new RoomPosition(target[0].pos.x, target[0].pos.y, target[0].room.name);
+                    var xFinish = (target[index].pos.x + 1);
+                    var yFinish = (target[index].pos.y + 1);
 
-        this.AnalizarRecurso(xStart, yStart, xFinish, yFinish,tt);
+                    var tt = new RoomPosition(target[index].pos.x, target[index].pos.y, target[index].room.name);
+
+                    this.AnalizarRecurso(xStart, yStart, xFinish, yFinish,tt);
+                }
+                debugger;
+                this.memory.recursosAnalizar = true;
+        }
     }
 
     /**
@@ -65,8 +78,9 @@ export class Zona extends Room {
                 }
             }
         }
-        debugger;
+        //debugger;
         this.memory.recursos.push(obj);
+
     }
 }
 
