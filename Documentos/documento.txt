@@ -1,3 +1,0 @@
-update npm i -g npm
-
-npm install screeps-typescript-starter
